@@ -10,8 +10,13 @@ var mainDb = builder.AddPostgres("main-db", mainDbUsername, mainDbPassword, port
 var cartDb = builder.AddAzureCosmosDB("cosmosdb")
     .AddDatabase("cartdb");
 
+var redis = builder.AddRedis("redis")
+    .WithRedisCommander();
+
 builder.AddProject<Projects.Dometrain_Monolith_Api>("dometrain-api")
+    .WithReplicas(3)
     .WithReference(mainDb)
-    .WithReference(cartDb);
+    .WithReference(cartDb)
+    .WithReference(redis);
 
 builder.Build().Run();
