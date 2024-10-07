@@ -14,6 +14,7 @@
         <PackageReference Include="Aspire.StackExchange.Redis" Version="8.2.1" />
         <PackageReference Include="Dapper" Version="2.1.35" />
         <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.10.0" />
+        <PackageReference Include="MassTransit.RabbitMQ" Version="8.2.5" />
         <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.8" />
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.8" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.8.1" />
@@ -28,6 +29,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Dometrain.Aspire.ServiceDefaults\Dometrain.Aspire.ServiceDefaults.csproj" />
+      <ProjectReference Include="..\Dometrain.Monolith.Api.Contracts\Dometrain.Monolith.Api.Contracts.csproj" />
     </ItemGroup>
 
 </Project>

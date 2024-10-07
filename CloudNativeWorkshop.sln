@@ -15,6 +15,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dometrain.Aspire.AppHost", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dometrain.Aspire.ServiceDefaults", "src\Dometrain.Aspire.ServiceDefaults\Dometrain.Aspire.ServiceDefaults.csproj", "{2904C9E0-5DFD-4DDA-8B6B-E225EFB1D8FE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dometrain.Monolith.Api.Contracts", "src\Dometrain.Monolith.Api.Contracts\Dometrain.Monolith.Api.Contracts.csproj", "{3252AE69-6C78-4B1A-B603-34C27949E6D2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dometrain.Monolith.Api.Sdk", "src\Dometrain.Monolith.Api.Sdk\Dometrain.Monolith.Api.Sdk.csproj", "{43DF01B4-A87D-4A90-BE91-011DD616FAF2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dometrain.Demo", "src\Dometrain.Demo\Dometrain.Demo.csproj", "{B3D98ECC-0D4E-4E8E-97C1-4F0648D2E781}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,6 +30,9 @@ Global
 		{BCD98E15-8F73-4F5A-8F9B-3A1BC752DB41} = {EA020C9E-BECD-40C1-98B3-48070D728500}
 		{7FC99315-0E51-4009-9F62-48AEA6C5411D} = {EA020C9E-BECD-40C1-98B3-48070D728500}
 		{2904C9E0-5DFD-4DDA-8B6B-E225EFB1D8FE} = {EA020C9E-BECD-40C1-98B3-48070D728500}
+		{3252AE69-6C78-4B1A-B603-34C27949E6D2} = {EA020C9E-BECD-40C1-98B3-48070D728500}
+		{43DF01B4-A87D-4A90-BE91-011DD616FAF2} = {EA020C9E-BECD-40C1-98B3-48070D728500}
+		{B3D98ECC-0D4E-4E8E-97C1-4F0648D2E781} = {EA020C9E-BECD-40C1-98B3-48070D728500}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{BCD98E15-8F73-4F5A-8F9B-3A1BC752DB41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -38,5 +47,17 @@ Global
 		{2904C9E0-5DFD-4DDA-8B6B-E225EFB1D8FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2904C9E0-5DFD-4DDA-8B6B-E225EFB1D8FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2904C9E0-5DFD-4DDA-8B6B-E225EFB1D8FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3252AE69-6C78-4B1A-B603-34C27949E6D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3252AE69-6C78-4B1A-B603-34C27949E6D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3252AE69-6C78-4B1A-B603-34C27949E6D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3252AE69-6C78-4B1A-B603-34C27949E6D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43DF01B4-A87D-4A90-BE91-011DD616FAF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43DF01B4-A87D-4A90-BE91-011DD616FAF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43DF01B4-A87D-4A90-BE91-011DD616FAF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43DF01B4-A87D-4A90-BE91-011DD616FAF2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3D98ECC-0D4E-4E8E-97C1-4F0648D2E781}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3D98ECC-0D4E-4E8E-97C1-4F0648D2E781}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3D98ECC-0D4E-4E8E-97C1-4F0648D2E781}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3D98ECC-0D4E-4E8E-97C1-4F0648D2E781}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

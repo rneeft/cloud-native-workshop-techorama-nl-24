@@ -1,0 +1,44 @@
+{
+  "projectPath": ".",
+  "inputPath": "aspirate-output",
+  "outputPath": "aspirate-output",
+  "containerImageTags": [
+    "latest"
+  ],
+  "imagePullPolicy": "IfNotPresent",
+  "containerBuilder": "docker",
+  "kubeContext": "minikube",
+  "outputFormat": "kustomize",
+  "skipFinalKustomizeGeneration": false,
+  "privateRegistryEmail": "aspir8@aka.ms",
+  "includeDashboard": true,
+  "useCustomNamespace": false,
+  "secrets": {
+    "salt": "JXIP8WpN5LwFT1C\u002B",
+    "hash": "pENtLBhwoPMXF9zMsHLj9I8lsEmm/\u002BfKPMLvruwx6sA=",
+    "secrets": {
+      "rabbitmq-password": {
+        "value": "JXIP8WpN5LwFT1C\u002BFAV1l\u002B873HDakCVkWl/oYfJQpgQidbN\u002B6HxZCgAcGjVgqolYTYg="
+      },
+      "postgres-username": {
+        "value": "JXIP8WpN5LwFT1C\u002BUV/o3ZyFpcwiVvnu8KqqvvZKshcedLRF"
+      },
+      "postgres-password": {
+        "value": "JXIP8WpN5LwFT1C\u002BLOjqUBcnUbwD3RCJkiO5s\u002BJNoRIKebZQ"
+      },
+      "main-db": {
+        "POSTGRES_PASSWORD": "JXIP8WpN5LwFT1C\u002BLOjqUBcnUbwD3RCJkiO5s\u002BJNoRIKebZQ"
+      },
+      "dometrain": {},
+      "redis": {},
+      "rabbitmq": {},
+      "dometrain-api": {
+        "ConnectionStrings__dometrain": "JXIP8WpN5LwFT1C\u002BwkV1Q6tTt2WulTr4Ll3t88lKswhQcbpc4zQNKgskJT5YwflNO9R4AI82t2jyhPiXYtDOb0a68gNxi7S/RhSz7DesZ3Un42\u002BvMsnh6QxlMu5z2UYvXux8vpSoEPfF",
+        "ConnectionStrings__cosmosdb": "JXIP8WpN5LwFT1C\u002BbXmI6\u002BYXnNx2H8ewinUFFPpGrw8Ac6hR7zcKJ14aLy9YlaMXW5IxPJI0uA==",
+        "ConnectionStrings__redis": "JXIP8WpN5LwFT1C\u002Bjf2Tjc3/Oj1CMkeZ367JOfNApBUeJu0GuiA=",
+        "ConnectionStrings__rabbitmq": "JXIP8WpN5LwFT1C\u002B7vXwwsCjjrpsN\u002B/naSCky\u002BBIsQxXM/RS\u002BHwaPAoHPypUs6URQ4MmZb5jrVbqpcvvNPrSREez/xEjr7i9D1bqqWE="
+      }
+    }
+  },
+  "processAllComponents": true
+}
