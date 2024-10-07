@@ -21,35 +21,109 @@ public class CachedCourseRepository : ICourseRepository
         {
             return created;
         }
-
+        
         var db = _connectionMultiplexer.GetDatabase();
-        var serializerCourse = JsonSerializer.Serialize(course);
-        await db.StringSetAsync($"course_id_{course.Id}", serializerCourse);
+        var serializedCourse = JsonSerializer.Serialize(course);
+        var batch = new KeyValuePair<RedisKey, RedisValue>[]
+        {
+            new($"course_id_{course.Id}", serializedCourse),
+            new($"course_slug_{course.Slug}", course.Id.ToString())
+        };
+        await db.StringSetAsync(batch);
         return created;
     }
 
-    public Task<Course?> GetByIdAsync(Guid id)
+    public async Task<Course?> GetByIdAsync(Guid id)
     {
-        throw new NotImplementedException();
+        var db = _connectionMultiplexer.GetDatabase();
+        var cachedCourse = await db.StringGetAsync($"course_id_{id}");
+        if (!cachedCourse.IsNull)
+        {
+            return JsonSerializer.Deserialize<Course>(cachedCourse.ToString());
+        }
+        
+        var course = await _courseRepository.GetByIdAsync(id);
+        if (course is null)
+        {
+            return course;
+        }
+        var serializedCourse = JsonSerializer.Serialize(course);
+        var batch = new KeyValuePair<RedisKey, RedisValue>[]
+        {
+            new($"course_id_{course.Id}", serializedCourse),
+            new($"course_slug_{course.Slug}", course.Id.ToString())
+        };
+        await db.StringSetAsync(batch);
+        return course;
     }
 
-    public Task<Course?> GetBySlugAsync(string slug)
+    public async Task<Course?> GetBySlugAsync(string slug)
     {
-        throw new NotImplementedException();
+        var db = _connectionMultiplexer.GetDatabase();
+        var cachedCourseKey = await db.StringGetAsync($"course_slug_{slug}");
+    
+        if (!cachedCourseKey.IsNull)
+        {
+            return await GetByIdAsync(Guid.Parse(cachedCourseKey.ToString()));
+        }
+    
+        var course = await _courseRepository.GetBySlugAsync(slug);
+        if (course is null)
+        {
+            return course;
+        }
+        var serializedCourse = JsonSerializer.Serialize(course);
+        var batch = new KeyValuePair<RedisKey, RedisValue>[]
+        {
+            new($"course_id_{course.Id}", serializedCourse),
+            new($"course_slug_{course.Slug}", course.Id.ToString())
+        };
+        await db.StringSetAsync(batch);
+        return course;
     }
 
-    public Task<IEnumerable<Course>> GetAllAsync(string nameFilter, int pageNumber, int pageSize)
+    public async Task<IEnumerable<Course>> GetAllAsync(string nameFilter, int pageNumber, int pageSize)
     {
-        throw new NotImplementedException();
+        return await _courseRepository.GetAllAsync(nameFilter, pageNumber, pageSize);
     }
 
-    public Task<Course?> UpdateAsync(Course course)
+    public async Task<Course?> UpdateAsync(Course course)
     {
-        throw new NotImplementedException();
+        var updated = await _courseRepository.UpdateAsync(course);
+        if (updated is null)
+        {
+            return updated;
+        }
+        
+        var db = _connectionMultiplexer.GetDatabase();
+        var serializedCourse = JsonSerializer.Serialize(course);
+        var batch = new KeyValuePair<RedisKey, RedisValue>[]
+        {
+            new($"course_id_{course.Id}", serializedCourse),
+            new($"course_slug_{course.Slug}", course.Id.ToString())
+        };
+        await db.StringSetAsync(batch);
+        return updated;
     }
 
-    public Task<bool> DeleteAsync(Guid id)
+    public async Task<bool> DeleteAsync(Guid id)
     {
-        throw new NotImplementedException();
+        var deleted = await _courseRepository.DeleteAsync(id);
+
+        if (!deleted)
+        {
+            return deleted;
+        }
+        
+        var db = _connectionMultiplexer.GetDatabase();
+        var cachedCourseString = await db.StringGetAsync($"course_id_{id}");
+        if (cachedCourseString.IsNull)
+        {
+            return deleted;
+        }
+        var course = JsonSerializer.Deserialize<Course>(cachedCourseString!)!;
+        var deletedCache = await db.KeyDeleteAsync([$"course_id_{id}",$"course_slug_{course.Slug}"]);
+        return deletedCache > 0;
+
     }
 }
