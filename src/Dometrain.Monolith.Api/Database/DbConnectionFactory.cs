@@ -10,17 +10,16 @@ public interface IDbConnectionFactory
 
 public class NpgsqlConnectionFactory : IDbConnectionFactory
 {
-    private readonly string _connectionString;
+    private readonly NpgsqlDataSource _dataSource;
 
-    public NpgsqlConnectionFactory(string connectionString)
+    public NpgsqlConnectionFactory(NpgsqlDataSource dataSource)
     {
-        _connectionString = connectionString;
+        _dataSource = dataSource;
     }
 
     public async Task<IDbConnection> CreateConnectionAsync(CancellationToken token = default)
     {
-        var connection = new NpgsqlConnection(_connectionString);
-        await connection.OpenAsync(token);
+        var connection = await _dataSource.OpenConnectionAsync(token);
         return connection;
     }
 }
